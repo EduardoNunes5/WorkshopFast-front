@@ -1,0 +1,7 @@
+.center-cell {
+  text-align: center;
+}
+
+.scrollable-table {
+  overflow-x: auto;
+}
