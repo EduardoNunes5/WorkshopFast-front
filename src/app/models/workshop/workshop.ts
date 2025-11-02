@@ -1,4 +1,4 @@
-import { WorkshopCollaboratorAttendance } from "../workshop-collaborator-attendance";
+import { WorkshopCollaboratorAttendance } from "../workshop-attendance/workshop-collaborator-attendance";
 
 export interface Workshop {
   id: number;

@@ -1,0 +1,45 @@
+.data-items {
+    display: flex;
+    gap: 1em;
+    margin: 0 auto;
+    padding-top: 0.5em;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.workshop-details-card {
+  margin-top: 0.3em;
+}
+
+.data-item label {
+    display: block;
+    font-size: 0.9em;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-end {
+  text-align: end;
+}
+
+.scrollable {
+  overflow: auto;
+}
+
+.main-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.workshop-info-container {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.spacer {
+  width: 1.5em;
+}

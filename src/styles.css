@@ -8,15 +8,30 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   border-radius: .1em;
   padding: .2em;
   font-weight: bold;
+  text-align: center;
 }
 
 .page-container {
-  width: 80vw;
+  width: 70vw;
   height: 80vh;
   display: flex;
   flex-direction: column;
   gap: 1em;
 }
+
+.scrollable-table {
+  overflow-x: auto;
+}
+
+.warn {
+  color: #ffc107;
+}
+
+.danger {
+  color: #dc3545;
+}
+
+/* reset css */
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,

@@ -1,7 +1,87 @@
 <app-card>
-  <div class="page-container">
-    <h1 class="title">Atas</h1>
-    <div class="scrollable-table">
-    </div>
+  <div class="page-container scrollable">
+    <section>
+      <div class="title main-header">
+        <button mat-icon-button style="color: #d0e6f4" [routerLink]="['/']">
+          <mat-icon>arrow_back</mat-icon>
+        </button>
+        <h1>Atas</h1>
+        <span class="spacer"></span>
+      </div>
+      <div>
+        <mat-card class="workshop-details-card">
+          <mat-card-title class="text-center"
+            >Informações do workshop</mat-card-title
+          >
+          <mat-card-content class="data-items">
+            <div class="data-item">
+              <label>Nome:</label>
+              <p>{{ workshop?.name }}</p>
+            </div>
+
+            <div class="data-item">
+              <label>Descrição:</label>
+              <p>
+                {{ workshop?.description }}
+              </p>
+            </div>
+            <div class="data-item">
+              <p class="text-end">
+                {{ workshop?.realizationDate }}
+              </p>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </section>
+    <section>
+      <mat-card-title class="text-center">Colaboradores</mat-card-title>
+      <div class="scrollable-table">
+        <table mat-table [dataSource]="workshop?.collaborators || []">
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef>id</th>
+            <td mat-cell *matCellDef="let collaborator">
+              {{ collaborator.collaboratorId }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef class="text-center">nome</th>
+            <td mat-cell *matCellDef="let collaborator" class="text-center">
+              {{ collaborator.collaboratorName }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="workshopAttendanceId">
+            <th mat-header-cell *matHeaderCellDef class="text-center">
+              ATA
+            </th>
+            <td mat-cell *matCellDef="let collaborator" class="text-center">
+              {{ collaborator.workshopAttendanceId }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef class="text-center">Ação</th>
+            <td mat-cell *matCellDef="let collaborator" class="text-center">
+              <button
+                mat-icon-button
+                (click)="
+                  removeCollaboratorFromWorkshopAttendance(
+                    collaborator.workshopAttendanceId,
+                    collaborator.id
+                  )
+                "
+              >
+                <mat-icon class="danger">delete</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="columns"></tr>
+          <tr mat-row *matRowDef="let row; columns: columns"></tr>
+        </table>
+      </div>
+    </section>
   </div>
 </app-card>

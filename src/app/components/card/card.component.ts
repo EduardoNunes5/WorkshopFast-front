@@ -11,5 +11,4 @@ export class CardComponent {
 
   @Input() size: 'small' | 'medium' | 'large' = 'medium';
   @Input() center: boolean = true;
-
 }

@@ -1,4 +1,4 @@
-import { CollaboratorId } from '../models/collaborator-id';
+import { CollaboratorId } from '../models/collaborator/collaborator-id';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment.development';
