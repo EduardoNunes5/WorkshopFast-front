@@ -13,3 +13,7 @@
 .btn-icon {
   margin: 0;
 }
+
+.scrollable-table {
+  overflow: auto;
+}

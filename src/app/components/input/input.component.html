@@ -1,1 +1,9 @@
-<p>input works!</p>
+<mat-form-field appearance="outline" class="full-width-input">
+  <mat-label>{{ label }}</mat-label>
+  <input
+    matInput
+    [type]="type"
+    [placeholder]="placeholder"
+    (input)="onInputChange($event)"
+  />
+</mat-form-field>

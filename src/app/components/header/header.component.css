@@ -15,7 +15,7 @@
   padding-right:1em;
 }
 
-@media screen and (max-width: 340px) {
+@media screen and (max-width: 420px) {
 
   .header-content {
     flex-direction: column;

@@ -1,6 +1,7 @@
 <table
   mat-table
   [dataSource]="source.data"
+  class="scrollable-table"
 >
   @for (column of source.columns; track $index) {
   <ng-container [matColumnDef]="column.name">
@@ -15,7 +16,7 @@
     } @if (column.columnType === ColumnType.Action) {
     <td mat-cell *matCellDef="let item" class="action">
       <button mat-button (click)="source.action.action(item)">
-        <mat-icon class="btn-icon">visibility</mat-icon>
+        <mat-icon class="btn-icon">{{ source.action.icon }}</mat-icon>
       </button>
     </td>
     }

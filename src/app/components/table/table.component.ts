@@ -22,8 +22,6 @@ export class TableComponent implements OnChanges {
       return;
     }
 
-    console.log('colunando' + JSON.stringify(this.source));
-
     this.columns = this.source.columns.map((column) => column.name)
   }
 }

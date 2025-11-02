@@ -1,5 +1,5 @@
 export interface WorkshopFilter {
-  collaboratorName?: string;
-  realizationDate?: string;
-  workshopName?: string;
+  colaboradorNome?: string;
+  data?: string;
+  workshopNome?: string;
 }

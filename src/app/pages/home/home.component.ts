@@ -13,6 +13,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { TableComponent } from '../../components/table/table.component';
 import { TableData } from '../../models/table/data';
 import { ColumnType } from '../../models/table/column';
+import { InputComponent } from '../../components/input/input.component';
+import { MatInputModule } from '@angular/material/input';
+import { HttpParams } from '@angular/common/http';
+import { DatePipe } from '@angular/common';
+import { WorkshopFilter } from '../../models/workshop/workshop-filter';
 
 @Component({
   selector: 'app-home',
@@ -22,6 +27,8 @@ import { ColumnType } from '../../models/table/column';
     MatButtonModule,
     MatIconModule,
     TableComponent,
+    InputComponent,
+    MatInputModule
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
@@ -39,63 +46,57 @@ export class HomeComponent implements OnInit {
   protected tableData = {} as TableData<WorkshopTableItem>;
   private workshops: Workshop[] = [];
 
+  private activeFilter: { key: keyof WorkshopFilter | null; value: string } = {
+    key: null,
+    value: ''
+  }
+
   constructor(
     private workshopAttendanceService: WorkshopAttendanceService,
-    private router: Router
+    private router: Router,
+    private datePipe: DatePipe
   ) {}
 
   ngOnInit(): void {
-    this.workshopAttendanceService.findAllV2().subscribe((response) => {
-      this.workshops = response;
-      this.workshopTableItems = response.map((workshopAttendance) => {
-        return {
-          id: workshopAttendance.id,
-          name: workshopAttendance.name,
-          realizationDate: workshopAttendance.realizationDate,
-          totalCollaborators: workshopAttendance.collaborators?.length ?? 0,
-        };
-      });
+    this.resetTable();
+  }
 
-      this.tableData = {
-        action: {
-          name: 'visualizar',
-          action: this.goToWorkshopDetails.bind(this),
-        },
-        data: of(this.workshopTableItems),
-        columns: [
-          {
-            title: 'Id',
-            name: 'id',
-            columnType: ColumnType.Data,
-          },
-          {
-            title: 'Nome',
-            name: 'name',
-            columnType: ColumnType.Data,
-          },
-          {
-            title: 'Data',
-            name: 'realizationDate',
-            columnType: ColumnType.Data,
-          },
-          {
-            title: 'Total de colaboradores',
-            name: 'totalCollaborators',
-            columnType: ColumnType.Data,
-          },
-          {
-            title: 'Ação',
-            name: 'action',
-            columnType: ColumnType.Action,
-          },
-        ],
-      };
-
-      this.tableData.action = {
+  private updateTableData(): void {
+    this.tableData = {
+      action: {
         name: 'visualizar',
+        icon: 'visibility',
         action: this.goToWorkshopDetails.bind(this),
-      };
-    });
+      },
+      data: of(this.workshopTableItems),
+      columns: [
+        {
+          title: 'Id',
+          name: 'id',
+          columnType: ColumnType.Data,
+        },
+        {
+          title: 'Nome',
+          name: 'name',
+          columnType: ColumnType.Data,
+        },
+        {
+          title: 'Data',
+          name: 'realizationDate',
+          columnType: ColumnType.Data,
+        },
+        {
+          title: 'Total de colaboradores',
+          name: 'totalCollaborators',
+          columnType: ColumnType.Data,
+        },
+        {
+          title: 'Ação',
+          name: 'action',
+          columnType: ColumnType.Action,
+        },
+      ],
+    };
   }
 
   goToWorkshopDetails(event: WorkshopTableItem) {
@@ -109,6 +110,69 @@ export class HomeComponent implements OnInit {
       state: {
         workshopData: foundWorkshop,
       },
+    });
+  }
+
+  updateFilter(key: keyof WorkshopFilter, value: string): void {
+    const searchValue = (value || '').trim();
+
+    this.activeFilter = {
+      key: searchValue.length > 0 ? key : null,
+      value: searchValue
+    }
+
+    this.performSearch();
+  }
+
+  private performSearch() {
+    if(this.activeFilter.key == null) {
+      this.resetTable();
+      return;
+    }
+
+    const { key: queryParameterKey, value } = this.activeFilter;
+
+    let finalValue = value;
+    if(queryParameterKey === 'data') {
+      finalValue = this.datePipe.transform(value, 'dd/MM/yyyy HH:mm:00') || '';
+    }
+
+    let options = new HttpParams();
+    options = options.set(queryParameterKey, finalValue);
+    this.search(options);
+  }
+
+  private search(params: HttpParams): void {
+    this.workshopAttendanceService
+      .findWorkshopsWithFilters({ params })
+      .subscribe((response) => {
+        this.workshops = response;
+        this.workshopTableItems = response.map((workshopAttendance) => {
+          return {
+            id: workshopAttendance.id,
+            name: workshopAttendance.name,
+            realizationDate: workshopAttendance.realizationDate,
+            totalCollaborators: workshopAttendance.collaborators?.length ?? 0,
+          };
+        });
+
+        this.updateTableData();
+      });
+  }
+
+  private resetTable(): void {
+        this.workshopAttendanceService.findAllV2().subscribe((response) => {
+      this.workshops = response;
+      this.workshopTableItems = response.map((workshopAttendance) => {
+        return {
+          id: workshopAttendance.id,
+          name: workshopAttendance.name,
+          realizationDate: workshopAttendance.realizationDate,
+          totalCollaborators: workshopAttendance.collaborators?.length ?? 0,
+        };
+      });
+
+      this.updateTableData();
     });
   }
 }

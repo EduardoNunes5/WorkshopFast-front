@@ -4,5 +4,38 @@
 
 .page-container {
   margin: 0 auto;
-  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2em;
+}
+
+.workshop-filter {
+  display: flex;
+  gap: 1em;
+  justify-content: space-around;
+}
+
+.filter-header {
+  font-size: 1.3em;
+  color:#6a8495;
+  padding: .4em;
+}
+
+.filter-container {
+  width: 90%;
+}
+
+@media screen and (max-width: 950px) {
+
+  .workshop-filter {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+
+}
+
+.scrollable-table {
+  width: 90%;
 }

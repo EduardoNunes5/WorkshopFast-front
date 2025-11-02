@@ -1,6 +1,31 @@
 <div class="page-container">
-    <h1 class="title">Workshops</h1>
-    <div class="scrollable-table">
-      <app-table [source]="tableData"></app-table>
-    </div>
+  <h1 class="title">Workshops</h1>
+  <mat-card class="filter-container">
+    <mat-card-header>
+      <p class="filter-header">Filtros</p>
+    </mat-card-header>
+    <mat-card-content>
+      <section class="workshop-filter">
+        <app-input
+          label="Nome do colaborador"
+          placeholder="Exemplo: Lucas"
+          (textChange)="updateFilter('colaboradorNome', $event)"
+        ></app-input>
+        <app-input
+          label="Nome do workshop"
+          placeholder="Exemplo: Desenvolva apis Java"
+          (textChange)="updateFilter('workshopNome', $event)"
+        ></app-input>
+        <app-input
+          label="Data do workshop"
+          placeholder="20/12/2025 13:30"
+          type="datetime-local"
+          (textChange)="updateFilter('data', $event)"
+        ></app-input>
+      </section>
+    </mat-card-content>
+  </mat-card>
+  <section class="scrollable-table">
+    <app-table [source]="tableData"></app-table>
+  </section>
 </div>
