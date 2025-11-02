@@ -3,8 +3,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .title {
   font-size: 2.5em;
-  background-color: #3b82c0;
-  color:#d0e6f4;
+  color:#6a8495;
   border-radius: .1em;
   padding: .2em;
   font-weight: bold;
@@ -12,11 +11,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 
 .page-container {
-  width: 70vw;
-  height: 80vh;
   display: flex;
   flex-direction: column;
   gap: 1em;
+  width: 80%;
 }
 
 .scrollable-table {

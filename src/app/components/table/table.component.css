@@ -1,0 +1,15 @@
+.text-center {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.action {
+  padding-top: 0.7em;
+  padding-bottom: 0.7em;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.btn-icon {
+  margin: 0;
+}
