@@ -91,6 +91,11 @@ export class HomeComponent implements OnInit {
     };
   }
 
+  onRowClicked(row: WorkshopTableItem): void {
+    this.goToWorkshopDetails(row);
+  }
+
+
   goToWorkshopDetails(event: WorkshopTableItem) {
     const foundWorkshop = this.workshops.find(
       (workshop) => workshop.id == event.id

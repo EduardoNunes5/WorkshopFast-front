@@ -1,10 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TableComponent } from './table.component';
+import { TableItem } from '../../models/table/table-item';
 
 describe('TableComponent', () => {
-  let component: TableComponent;
-  let fixture: ComponentFixture<TableComponent>;
+  let component: TableComponent<TableItem>;
+  let fixture: ComponentFixture<TableComponent<TableItem>>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({

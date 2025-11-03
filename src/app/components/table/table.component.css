@@ -17,3 +17,9 @@
 .scrollable-table {
   overflow: auto;
 }
+
+.mat-row-hover:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+  cursor: pointer;
+
+}

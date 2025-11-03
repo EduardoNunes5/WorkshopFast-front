@@ -25,5 +25,5 @@
   </mat-card-content>
 </mat-card>
 <section class="scrollable-table">
-  <app-table [source]="tableData"></app-table>
+  <app-table [source]="tableData" (rowClick)="onRowClicked($event)" [clickable]="true"></app-table>
 </section>
