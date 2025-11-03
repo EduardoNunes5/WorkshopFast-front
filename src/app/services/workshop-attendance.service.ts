@@ -5,6 +5,7 @@ import { environment } from '../../environments/environment.development';
 import { Observable } from 'rxjs';
 import { WorkshopDetails } from '../models/workshop/workshop-details';
 import { CollaboratorDetails } from '../models/collaborator/collaborator-details';
+import { WorkshopAttendanceSaveResponse } from '../models/workshop-attendance/workshop-attendance-save-response';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,10 @@ export class WorkshopAttendanceService {
   constructor(private client: HttpClient) {
     this.baseUrl = environment.apiUrl;
     this.resource = "atas";
+  }
+
+  create(workshopId: number): Observable<WorkshopAttendanceSaveResponse> {
+    return this.client.post<WorkshopAttendanceSaveResponse>(`${this.baseUrl}/${this.resource}`, { id: workshopId});
   }
 
   findAll(): Observable<CollaboratorDetails[]> {
