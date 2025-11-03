@@ -1,0 +1,37 @@
+<section>
+  <div class="title main-header">
+    <button mat-icon-button style="color: #d0e6f4" [routerLink]="['/']">
+      <mat-icon style="color: var(--color-primary);">arrow_back</mat-icon>
+    </button>
+    <mat-card-title class="title text-center">Atas</mat-card-title>
+   </div>
+  <div>
+    <mat-card class="workshop-details-card">
+      <mat-card-title class="title text-center"
+        >Informações do workshop</mat-card-title
+      >
+      <mat-card-content class="data-items">
+        <div class="data-item">
+          <label>Nome:</label>
+          <p>{{ workshop?.name }}</p>
+        </div>
+
+        <div class="data-item">
+          <label>Descrição:</label>
+          <p>
+            {{ workshop?.description }}
+          </p>
+        </div>
+        <div class="data-item">
+          <p class="text-end">
+            {{ workshop?.realizationDate }}
+          </p>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</section>
+<section class="scrollable-table">
+  <mat-card-title class="title text-center">Colaboradores</mat-card-title>
+  <app-table [source]="tableData"></app-table>
+</section>

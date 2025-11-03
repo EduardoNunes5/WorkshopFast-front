@@ -1,0 +1,48 @@
+.workshop-data-items {
+    display: flex;
+    margin: 0 auto;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.workshop-details-card {
+  margin-top: 0.3em;
+  padding: 3em;
+  width: 75vw;
+}
+
+.data-item label {
+    display: block;
+    font-size: 0.9em;
+    color: var(--color-secondary);
+    margin-bottom: 5px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+
+.text-end {
+  margin-top: 0.8em;
+  text-align: end;
+}
+
+.scrollable {
+  overflow: auto;
+}
+
+.main-header {
+  display: flex;
+  justify-content: center;
+}
+
+.scrollable-table {
+  width: 75vw;
+  margin: 1em 0;
+}
+
+.spacer {
+  width: 48px;
+  height: 48px;
+}
