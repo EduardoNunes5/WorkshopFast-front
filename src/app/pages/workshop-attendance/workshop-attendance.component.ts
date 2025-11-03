@@ -1,6 +1,6 @@
 import { WorkshopAttendanceService } from './../../services/workshop-attendance.service';
 import { Component, OnInit } from '@angular/core';
-import { WorkshopWithCollaborators } from '../../models/workshop/workshop-collaborator';
+import { WorkshopDetails } from '../../models/workshop/workshop-details';
 import { Navigation, Router, RouterModule } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
@@ -26,7 +26,7 @@ import { ColumnType } from '../../models/table/column';
   styleUrl: './workshop-attendance.component.css',
 })
 export class WorkshopAttendanceComponent implements OnInit {
-  workshop?: WorkshopWithCollaborators;
+  workshop?: WorkshopDetails;
   columns = ['id', 'name', 'workshopAttendanceId', 'action'];
 
   protected collaboratorTableItems: CollaboratorTableItem[] = [];
