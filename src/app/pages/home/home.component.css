@@ -2,14 +2,6 @@
   text-align: center;
 }
 
-.page-container {
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 2em;
-}
-
 .workshop-filter {
   display: flex;
   gap: 1em;
@@ -18,12 +10,12 @@
 
 .filter-header {
   font-size: 1.3em;
-  color:#6a8495;
+  color: var(--color-primary);
   padding: .4em;
 }
 
 .filter-container {
-  width: 90%;
+  width: 100%;
 }
 
 @media screen and (max-width: 950px) {
@@ -37,5 +29,7 @@
 }
 
 .scrollable-table {
-  width: 90%;
+  width: 100%;
+  margin: 1em 0;
 }
+

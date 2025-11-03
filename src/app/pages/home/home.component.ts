@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { CardComponent } from '../../components/card/card.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
@@ -34,13 +33,6 @@ import { WorkshopFilter } from '../../models/workshop/workshop-filter';
   styleUrl: './home.component.css',
 })
 export class HomeComponent implements OnInit {
-  columns: string[] = [
-    'id',
-    'name',
-    'realizationDate',
-    'totalCollaborators',
-    'action',
-  ];
 
   protected workshopTableItems: WorkshopTableItem[] = [];
   protected tableData = {} as TableData<WorkshopTableItem>;
@@ -103,8 +95,6 @@ export class HomeComponent implements OnInit {
     const foundWorkshop = this.workshops.find(
       (workshop) => workshop.id == event.id
     );
-
-    console.log('passando: ' + JSON.stringify(foundWorkshop));
 
     this.router.navigate(['/workshops', foundWorkshop?.id, 'atas'], {
       state: {

@@ -20,11 +20,18 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 
 .warn {
-  color: #ffc107;
+  color: var(--color-warn);
 }
 
 .danger {
-  color: #dc3545;
+  color: var(--color-danger);
+}
+
+:root {
+  --color-primary: #6a8495;
+  --color-secondary: #666;
+  --color-danger: #dc3545;
+  --color-warn: #ffc107;
 }
 
 /* reset css */

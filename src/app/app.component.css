@@ -6,3 +6,12 @@
   width: 100vw;
   overflow-y: auto;
 }
+
+.page-container {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 85%;
+  padding-top: 0;
+}

@@ -1,6 +1,6 @@
 export interface WorkshopCollaboratorAttendance {
-  id: number;
+  workshopAttendanceId: number;
   workshopId: number,
-  collaboratorId: string,
+  collaboratorId: number,
   collaboratorName: string,
 }
