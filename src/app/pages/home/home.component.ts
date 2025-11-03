@@ -137,12 +137,12 @@ export class HomeComponent implements OnInit {
       .findWorkshopsWithFilters({ params })
       .subscribe((response) => {
         this.workshops = response;
-        this.workshopTableItems = response.map((workshopAttendance) => {
+        this.workshopTableItems = response.map((workshop) => {
           return {
-            id: workshopAttendance.id,
-            name: workshopAttendance.name,
-            realizationDate: workshopAttendance.realizationDate,
-            totalCollaborators: workshopAttendance.collaborators?.length ?? 0,
+            id: workshop.id,
+            name: workshop.name,
+            realizationDate: workshop.realizationDate,
+            totalCollaborators: this.countCollaboratorsInWorkshop(workshop),
           };
         });
 
@@ -153,16 +153,24 @@ export class HomeComponent implements OnInit {
   private resetTable(): void {
         this.workshopAttendanceService.findAllV2().subscribe((response) => {
       this.workshops = response;
-      this.workshopTableItems = response.map((workshopAttendance) => {
+      this.workshopTableItems = response.map((workshop) => {
         return {
-          id: workshopAttendance.id,
-          name: workshopAttendance.name,
-          realizationDate: workshopAttendance.realizationDate,
-          totalCollaborators: workshopAttendance.collaborators?.length ?? 0,
+          id: workshop.id,
+          name: workshop.name,
+          realizationDate: workshop.realizationDate,
+          totalCollaborators: this.countCollaboratorsInWorkshop(workshop),
         };
       });
 
       this.updateTableData();
     });
+  }
+
+  private countCollaboratorsInWorkshop(workshop: Workshop): number {
+    const collaborators = workshop.collaborators;
+    if(collaborators == null) {
+      return 0;
+    }
+    return new Set(collaborators.map(collaborator => collaborator.collaboratorId)).size;
   }
 }

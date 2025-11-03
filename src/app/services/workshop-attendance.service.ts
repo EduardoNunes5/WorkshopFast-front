@@ -36,7 +36,7 @@ export class WorkshopAttendanceService {
     return this.client.put<void>(`${this.baseUrl}/workshops/${workshopId}/${this.resource}/${workshopAttendanceId}`, collaboratorId);
   }
 
-  removeCollaborator(workshopAttendanceId: number, collaboratorId: number) : Observable<void> {
+  removeCollaboratorByWorkshopAttendanceIdAndCollaboratorId(workshopAttendanceId: number, collaboratorId: number) : Observable<void> {
     return this.client.delete<void>(`${this.baseUrl}/${this.resource}/${workshopAttendanceId}/colaboradores/${collaboratorId}`);
   }
 

@@ -95,9 +95,20 @@ export class WorkshopAttendanceComponent implements OnInit {
   }
 
   removeCollaboratorFromWorkshopAttendance(collaboratorAttendance: CollaboratorTableItem) {
-    this.workshopAttendanceService.removeCollaborator(collaboratorAttendance.workshopAttendanceId, collaboratorAttendance.id).subscribe(() => {
-      this.collaboratorTableItems = this.collaboratorTableItems.filter(collaboratorTableItem => collaboratorTableItem.id != collaboratorAttendance.id);
-      this.tableData.data = of(this.collaboratorTableItems);
+    const collaboratorId = collaboratorAttendance.id;
+    const workshopAttendenceId = collaboratorAttendance.workshopAttendanceId
+
+    console.log(collaboratorId + " and " + workshopAttendenceId)
+
+    this.workshopAttendanceService.removeCollaboratorByWorkshopAttendanceIdAndCollaboratorId(workshopAttendenceId, collaboratorId).subscribe(() => {
+        console.log(this.collaboratorTableItems.length);
+
+      this.collaboratorTableItems = this.collaboratorTableItems
+        .filter(tableItem => tableItem.id !== collaboratorId || tableItem.workshopAttendanceId !== workshopAttendenceId);
+
+        console.log(this.collaboratorTableItems.length);
+
+        this.tableData.data = of(this.collaboratorTableItems);
     });
   }
 }

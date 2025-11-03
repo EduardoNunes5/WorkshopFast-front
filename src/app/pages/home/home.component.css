@@ -15,7 +15,7 @@
 }
 
 .filter-container {
-  width: 100%;
+  width: 75vw;
 }
 
 @media screen and (max-width: 950px) {
@@ -29,7 +29,7 @@
 }
 
 .scrollable-table {
-  width: 100%;
+  width: 75vw;
   margin: 1em 0;
 }
 
