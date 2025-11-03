@@ -3,8 +3,8 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment.development';
 import { Observable } from 'rxjs';
-import { Workshop } from '../models/workshop/workshop';
-import { WorkshopFilter } from '../models/workshop/workshop-filter';
+import { WorkshopWithCollaborators } from '../models/workshop/workshop-collaborator';
+import { CollaboratorSummary } from '../models/collaborator/collaborator-summary';
 
 @Injectable({
   providedIn: 'root'
@@ -19,17 +19,16 @@ export class WorkshopAttendanceService {
     this.resource = "atas";
   }
 
-  // return collaborator???
-  findAll(): Observable<Workshop[]> {
-    return this.client.get<Workshop[]>(`${this.baseUrl}/${this.resource}`);
+  findAll(): Observable<CollaboratorSummary[]> {
+    return this.client.get<CollaboratorSummary[]>(`${this.baseUrl}/${this.resource}`);
   }
 
-  findAllV2() : Observable<Workshop[]> {
-    return this.client.get<Workshop[]>(`${this.baseUrl}/v2/${this.resource}`);
+  findAllV2() : Observable<WorkshopWithCollaborators[]> {
+    return this.client.get<WorkshopWithCollaborators[]>(`${this.baseUrl}/v2/${this.resource}`);
   }
 
-  findWorkshopsWithFilters(options: { params: HttpParams }) : Observable<Workshop[]> {
-    return this.client.get<Workshop[]>(`${this.baseUrl}/${this.resource}`, options);
+  findWorkshopsWithFilters(options: { params: HttpParams }) : Observable<WorkshopWithCollaborators[]> {
+    return this.client.get<WorkshopWithCollaborators[]>(`${this.baseUrl}/${this.resource}`, options);
   }
 
   addColaborator(workshopId: number, workshopAttendanceId: number, collaboratorId: CollaboratorId) : Observable<void> {

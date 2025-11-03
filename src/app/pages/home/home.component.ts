@@ -6,7 +6,7 @@ import { of } from 'rxjs';
 
 import { WorkshopAttendanceService } from '../../services/workshop-attendance.service';
 import { WorkshopTableItem } from '../../models/workshop/workshop-table-item';
-import { Workshop } from '../../models/workshop/workshop';
+import { WorkshopWithCollaborators } from '../../models/workshop/workshop-collaborator';
 import { Router } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { TableComponent } from '../../components/table/table.component';
@@ -36,7 +36,7 @@ export class HomeComponent implements OnInit {
 
   protected workshopTableItems: WorkshopTableItem[] = [];
   protected tableData = {} as TableData<WorkshopTableItem>;
-  private workshops: Workshop[] = [];
+  private workshops: WorkshopWithCollaborators[] = [];
 
   private activeFilter: { key: keyof WorkshopFilter | null; value: string } = {
     key: null,
@@ -166,7 +166,7 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  private countCollaboratorsInWorkshop(workshop: Workshop): number {
+  private countCollaboratorsInWorkshop(workshop: WorkshopWithCollaborators): number {
     const collaborators = workshop.collaborators;
     if(collaborators == null) {
       return 0;
